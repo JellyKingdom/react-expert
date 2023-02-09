@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import "./App.css";
 import TestPage from "./components/TestPage";
+import GlobalStyle from "./GlobalStyle";
 
 // 전역 스타일링: 프로젝트 전체를 아우르는 스타일!
 //styled-components: 해당 컴포넌트 내에서만!
@@ -46,6 +47,7 @@ function App() {
                 return <StBox borderColor={box}>{getBoxName(box)}</StBox>
               })}
             </StContainer> */}
+            <GlobalStyle />
             <TestPage
             title="제목입니다."
             contents="내용입니다."
