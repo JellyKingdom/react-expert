@@ -9,19 +9,20 @@ const StBox = styled.div`
   border: 1px solid ${(props) => {
     return props.borderColor;
     }};
+  background-color: ${props => props.backgroundColor};
   margin: 20px;
 `;
 
 function App() {
   return (
     <>
-      <StBox borderColor="red">
+      <StBox borderColor="red" backgroundColor="yellow">
         빨간박스
       </StBox>
-      <StBox borderColor="blue">
+      <StBox borderColor="blue" backgroundColor="red">
         파란박스
       </StBox>
-      <StBox borderColor="green">
+      <StBox borderColor="green" backgroundColor="blue">
         초록박스
       </StBox>
     </>
