@@ -6,22 +6,26 @@ import './App.css';
 const StBox = styled.div`
   width: 100px;
   height: 100px;
-  border: 1px solid red;
+  border: 1px solid ${props =>props.borderColor};
   margin: 20px;
 `;
-
-const StP = styled.p`
-  color: blue;
-`
 
 function App() {
   return (
     <>
-      <StBox>
-        <StP>나는 p태그 입니다.</StP>
+      <StBox borderColor="red">
+        빨간박스
+      </StBox>
+      <StBox borderColor="blue">
+        파란박스
+      </StBox>
+      <StBox borderColor="green">
+        초록박스
       </StBox>
     </>
   );
 }
+
+//props : 부모 컴포넌트 -> 자식 컴포넌트
 
 export default App;
