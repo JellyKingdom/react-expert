@@ -1,54 +1,22 @@
 import styled from "styled-components";
 import "./App.css";
 
-//styled.뒤 에는 항상 html요소가 온다!
-//``안에는 css문법을 써준다!
-const StBox = styled.div`
-    width: 100px;
-    height: 100px;
-    border: 1px solid
-        ${(props) => {
-            return props.borderColor;
-        }};
-    margin: 20px;
-`;
 
-const StContainer = styled.div`
-    display: flex;
-`;
-
-//박스의 색
-const boxList = ['red','blue','green','black'];
-
-// 색을 넣으면 이름을 반환
-const getBoxName = (color) => {
-  switch(color){
-    case 'red' :
-      return '빨간 박스';
-    case 'green' :
-      return '초록 박스';
-    case 'blue' :
-      return '파란 박스';
-    default:
-      return '검정 박스'
-  }
-}
 
 function App() {
     return (
         <>
-            <StContainer>
-              {/* <StBox borderColor="red">
-                    빨간박스
-                </StBox> */}
-              {boxList.map((box)=>{
-                return <StBox borderColor={box}>{getBoxName(box)}</StBox>
-              })}
-            </StContainer>
+        <span>Default Style 테스트</span>
+        <h1>이건 h1 태그입니다.</h1>
+        <p>나는 p태그입니다.</p>
+      
+        {/*p태그는 크롬에서 기본 마진16px이 제공됨 
+        하지만 브라우저마다 default 스타일이 다르다. 그래서 default 스타일을 제거 해줄 필요가 있다.
+        */}
         </>
     );
 }
 
-//props : 부모 컴포넌트 -> 자식 컴포넌트
+//default style을 제거하는 방식: CSS Reset
 
 export default App;
