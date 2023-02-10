@@ -1,10 +1,15 @@
 import "./App.css";
-import GrandFather from "./components/GrandFather";
 
+import ObjectComponent from "./components/ObjectComponent";
+
+// heavy work -> 엄청 무거운 작업!
 function App() {
     return <>
-    <GrandFather/>
+        <ObjectComponent/>
+
     </>;
 }
 
 export default App;
+
+
