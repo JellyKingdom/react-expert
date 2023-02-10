@@ -12,4 +12,4 @@ function Box2() {
     return <div style={style}>Box2</div>;
 }
 
-export default Box2;
+export default React.memo(Box2);
