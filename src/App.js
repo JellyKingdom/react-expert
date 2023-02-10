@@ -1,47 +1,43 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 
 function App() {
-
-  const [value, setValue] = useState('');
-  //useEffct
-  //렌더링 될 때, 특정한 작업을 수행해야할 때 설정하는 훅
-
-  // 컴포넌트가 화면에 보여졌을 때
-  // 컴포넌트가 화면에서 사라졌을 때(return)
-
-  //1.input에 값을 입력
-  //2. value, 즉 state가 변경
-  //3. state가 바뀌었기때문에 App 컴포넌트가 리렌더링
-  //4. 리렌더링 -> useEffect()
   
-  //Dependancy Array
-  //이 배열에 값을 넣으면, 그 값이 바뀔 때만 useEffect를 실행한다.
+  const idRef = useRef('');
+  const pwRef = useRef('');
 
-  //clean up
-  useEffect(() => {
-    console.log(`hello, useEffect : ${value}`);
+  const [id,setId] = useState('');
 
-    return () => {
-      // 컴포넌트가 사라질때 동작
-      console.log('나 사라져요 ..ㅠ');
+  // 화면이 랜더링 될 때 어떤 작업을 하고 싶다! : useEffect!
+  useEffect(()=> {
+    idRef.current.focus();
+  },[])
+
+  // id라는 state가 바뀔때마다 수행이 되어야 하기때문에 id값이 dependancy에 들어간다.
+  useEffect(()=>{
+    if(id.length >= 10){
+      pwRef.current.focus();
     }
-  }, [value]);
+  },[id])
+
+  //리액트에서 state -> 배치 업데이트
+  //set을 바로 했는데 바로 반영되는게 아니라 한박자 늦음.
+  //그렇기때문에 useEffect를 써줘서 바로 반영되게 만든다.
+  //useEffect를 안쓰면 11번째에서 pw 인풋창이 focus된다.
+  // if(id.length === 10){
+  //   pwRef.current.focus();}
 
     return (
         <>
-        <span>UseEffect</span>
-        <input
-        type="text"
-        value={value}
-        onChange={(e) => {
-          setValue(e.target.value);
-        }}
-        />
+          <div>
+            아이디 : <input type="text" value={id} ref={idRef} onChange={(e) => {setId(e.target.value)}}/>
+          </div>
+          <div>
+            비밀번호 : <input type="password" ref={pwRef}/>
+          </div>
         </>
     );
 }
-
 
 export default App;
