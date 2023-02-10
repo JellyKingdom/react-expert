@@ -1,5 +1,8 @@
 import "./App.css";
 import { useState } from "react";
+import Box1 from "./components/Box1";
+import Box2 from "./components/Box2";
+import Box3 from "./components/Box3";
 
 
 function App() {
@@ -21,6 +24,11 @@ function App() {
     <p> 현재 카운트 : {count}</p>
     <button onClick={onPlusButtonClickHandler}>+</button>
     <button onClick={onMinusButtonClickHandler}>-</button>
+    <div style={{display:"flex", marginTop: "10px"}}>
+        <Box1 />
+        <Box2 />
+        <Box3 />
+    </div>
     </>;
 }
 
