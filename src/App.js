@@ -2,25 +2,40 @@ import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 
+const style = {
+    border: "1px solid black",
+    padding: "10px",
+    margin: "10px",
+};
+
 function App() {
-  //ref : reference
-  const ref = useRef('초기값');
-  // key는 current, value는 여기에 설정해준 '초기값'
-  console.log('ref',ref);
+    const [count, setCount] = useState(0);
+    const countRef = useRef(0);
 
-  ref.current = '변경값';
-  console.log('ref2',ref)
+    //렌더링이 계속 일어나기때문에 숫자가 계속 +1씩 늘어난다.
+    const plusStateCountButtonHandler = () => {
+      setCount(count + 1);
+    }
 
-  //이렇게 설정된 ref값은 컴포넌트가 계속해서 렌더링 되어도 unmount전까지 값을 유지한다.
 
-  // state는 리렌더링이 꼭 필요한 값을 다룰 때 쓰면 된다.
-  // ref는 리렌더링을 발생시키지 않는 값을 저장할 때 사용한다.
+    //렌더링을 일으키지않기때문에 화면속에서 변화는 없지만 콘솔로 값이 변하는건 볼 수 있다.
+    const plusRefCountButtonHandler = () => {
+      countRef.current++;
+      console.log(countRef.current);
+    }
+
     return (
         <>
-          <div>useRef</div>
+            <div style={style}>
+                state 영역입니다. {count} <br />
+                <button onClick={plusStateCountButtonHandler}>state 증가</button>
+            </div>
+            <div style={style}>
+                ref 영역입니다. {countRef.current} <br />
+                <button onClick={plusRefCountButtonHandler}>ref 증가</button>
+            </div>
         </>
     );
 }
-
 
 export default App;
