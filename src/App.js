@@ -1,43 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import "./App.css";
 
-//React Hooks - useState
-
-//가장 기본적인 hook
-//함수형 컴포넌트 내에서 가변적인 상태를 갖게 함
-//카운터, Todolist
-
-
 function App() {
 
-  const [number, setNumber] = useState(0);
+  const [value, setValue] = useState('');
+  //useEffct
+  //렌더링 될 때, 특정한 작업을 수행해야할 때 설정하는 훅
+
+  // 컴포넌트가 화면에 보여졌을 때
+  // 컴포넌트가 화면에서 사라졌을 때(return)
+
+  //1.input에 값을 입력
+  //2. value, 즉 state가 변경
+  //3. state가 바뀌었기때문에 App 컴포넌트가 리렌더링
+  //4. 리렌더링 -> useEffect()
+  
+  //Dependancy Array
+  //이 배열에 값을 넣으면, 그 값이 바뀔 때만 useEffect를 실행한다.
+
+
+  useEffect(() => {
+    console.log(`hello, useEffect : ${value}`);
+  }, [value]);
+
     return (
         <>
-        <span>UseState</span>
-        <div>Number State : {number}</div>
-        <button onClick={() => {
-          //아래의 3개의 setNumber(number + 1)은 +1만 된다.
-          //배치성으로 처리가 된다.
-          //배치업데이트!
-          //setNumber(number + 1);
-          //setNumber(number + 1);
-          //setNumber(number + 1);
-
-          //렌더링이 잦다 -> 성능에 이슈가 있다.
-          //불필요한 렌더링을 피하기위해 요청사항을 모아서 한번에 처리
-          
-          //아래에 함수형 컴포넌트로 표현
-          // 3개의 함수형 컴포넌트는 +3이 된다.
-          //명령을 모아서 순차적으로 하나씩 실행시킨다!
-          setNumber((currentState) => currentState + 1);
-          setNumber((currentState) => currentState + 1);
-          setNumber((currentState) => currentState + 1);
-        }}>누르면 up</button>
+        <span>UseEffect</span>
+        <input
+        type="text"
+        value={value}
+        onChange={(e) => {
+          setValue(e.target.value);
+        }}
+        />
         </>
     );
 }
 
-//default style을 제거하는 방식: CSS Reset
 
 export default App;
