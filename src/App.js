@@ -1,4 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
+import { minusOne, PLUS_ONE  } from "./redux/modules/counter";
+import { MINUS_ONE } from "./redux/modules/counter";
+import { plusOne } from "./redux/modules/counter";
 import "./App.css";
 
 function App() {
@@ -17,15 +20,13 @@ function App() {
             <div>현재카운트 : {counter.number}</div>
             <button onClick={() => {
                 // + 1을 해주는 로직을 써주면 된다.
-                dispatch({
-                    type: 'PLUS_ONE',
-                });
-                
+                // dispatch({
+                //     type: PLUS_ONE,
+                // });
+                dispatch(plusOne());
             }}>+</button>
             <button onClick={() => {
-                dispatch({
-                    type: 'MINUS_ONE',
-                });
+                dispatch(minusOne());
             }}>-</button>
     </>;
 }
