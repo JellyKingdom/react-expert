@@ -1,8 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function Works() {
     const nav = useNavigate();
+    const location = useLocation();
+
+    console.log('location :',location);
+
     return <div>Works<br/>
     <button onClick={() => {
         nav('/');
