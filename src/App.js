@@ -1,51 +1,30 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { minusN, minusOne } from "./redux/modules/counter";
-import { plusOne } from "./redux/modules/counter";
-import "./App.css";
-import { useEffect, useState } from "react";
-import { plusN } from "./redux/modules/counter";
+import { addNumber, minusNumber } from "./redux/modules/counter";
 
+const App = () => {
+  // Store에 있는 counter 모듈 state 조회하기
+  const counter = useSelector((state) => state.counter.number);
+  
+  const dispatch = useDispatch();
 
-function App() {
-    const [number, setNumber] = useState(0);
+  const plus = () => {
+    dispatch(addNumber(1));
+  }
 
-    //여기에서 store에 접근하여, counter의 값을 읽어오고 싶다!
-    //useSelector
-    const counter = useSelector((state) => {
-        return state.counter;
-    });
+  const minus = () => {
+    dispatch(minusNumber(1));
+  }
 
-    useEffect(() => {
-        console.log('number =>',number);
-    },[number])
-
-    //dispatch를 가져와보자
-    const dispatch = useDispatch();
-
-    return <>
-            <div>현재카운트 : {counter.number}</div>
-            <div>
-                <input type="number"
-                value = {number}
-                onChange={(e) => {
-                    const {value} = e.target;
-                    setNumber(+value)}}/>
-            </div>
-            <button onClick={() => {
-                // + 1을 해주는 로직을 써주면 된다.
-                // dispatch({
-                //     type: PLUS_ONE,
-                // });
-                // dispatch(plusOne());
-                dispatch(plusN(number));
-            }}>+</button>
-            <button onClick={() => {
-                // dispatch(minusOne());
-                dispatch(minusN(number));
-            }}>-</button>
-    </>;
-}
+  return (
+    <>
+    <div>
+      {counter} <br/>
+      <button onClick={plus}>+</button>
+      <button onClick={minus}>-</button>
+    </div>
+    </>
+    );
+};
 
 export default App;
-
-
