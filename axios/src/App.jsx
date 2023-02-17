@@ -13,9 +13,18 @@ function App() {
     setTodos(data);
   };
 
+  //추가 함수
   const onSubmitHandler = async () =>{
     axios.post('http://localhost:4000/todos', inputValue);
     setTodos([...todos, inputValue]);
+  }
+
+  //삭제 함수
+  const onDeleteButtonClickHandler = async(id)=>{
+    axios.delete(`http://localhost:4000/todos/${id}`);
+    setTodos(todos.filter((item) =>{
+      return item.id !== id;
+    }))
   }
   useEffect(()=>{
     fetchTodos();
@@ -48,6 +57,10 @@ function App() {
         return (
           <div key={item.id}>
             {item.id} : {item.title}
+            &nbsp;
+            <button onClick={()=>{
+              onDeleteButtonClickHandler(item.id)
+            }}>x</button>
           </div>
         )
       })
