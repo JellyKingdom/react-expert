@@ -4,6 +4,8 @@ import axios from "axios";
 //configuration
 const instance = axios.create({
     baseURL: 'http://localhost:4000',
+    //오류 응답수신 예제(timeout : 1)
+    timeout: 1,
 });
 
 instance.interceptors.request.use(
