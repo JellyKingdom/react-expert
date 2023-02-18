@@ -19,7 +19,8 @@ function App() {
   //추가 함수
   const onSubmitHandler = async () =>{
     axios.post('http://localhost:4000/todos', inputValue);
-    setTodos([...todos, inputValue]);
+    // setTodos([...todos, inputValue]);
+    fetchTodos();
   }
 
   //삭제 함수
